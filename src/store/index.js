@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: {},
+    user: null,
     currentlyServicingMachine: "Wash Bucket",
     inventory: [
       {
@@ -36,7 +36,6 @@ export default new Vuex.Store({
   },
   getters: {
     isLoggedIn(state) {
-      console.log(state.user);
       return !!state.user;
     }
   },

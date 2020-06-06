@@ -14,7 +14,9 @@
           Password
           <input type="password" />
         </label>
-        <button type="submit" class="submit-button">Login</button>
+        <button type="submit" class="submit-button" @click="handleLogin">
+          Login
+        </button>
       </form>
     </div>
   </div>
@@ -25,7 +27,14 @@ export default {
   name: "VendingMachineLogin",
   methods: {
     handleLogin() {
-      // we'll dispatch the login and reroute here //
+      this.$store
+        .dispatch("logIn")
+        .then(() => {
+          this.$router.push("/");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };

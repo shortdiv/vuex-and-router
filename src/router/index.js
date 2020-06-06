@@ -3,7 +3,7 @@ import Router from "vue-router";
 import LoginScreen from "../components/VendingMachineLogin.vue";
 import AdminScreen from "../components/VendingMachineAdmin.vue";
 import InventoryScreen from "../components/InventoryView.vue";
-// import store from "../store";
+import store from "../store";
 
 Vue.use(Router);
 
@@ -11,7 +11,14 @@ const routes = [
   {
     path: "/",
     name: "AdminScreen",
-    component: AdminScreen
+    component: AdminScreen,
+    beforeEnter: (to, from, next) => {
+      if (store.getters["isLoggedIn"]) {
+        next();
+      } else {
+        next("/login");
+      }
+    }
   },
   {
     path: "/login",
@@ -29,7 +36,5 @@ const router = new Router({
   routes,
   mode: "history"
 });
-
-// create a navigation guard here //
 
 export default router;

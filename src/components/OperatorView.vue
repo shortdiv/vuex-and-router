@@ -35,7 +35,14 @@ export default {
   },
   methods: {
     logout() {
-      console.log("logout");
+      this.$store
+        .dispatch("logOut")
+        .then(() => {
+          this.$router.push("/login");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };
