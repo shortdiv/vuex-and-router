@@ -10,10 +10,7 @@ const routes = [
   {
     path: "/",
     name: "AdminScreen",
-    component: AdminScreen,
-    meta: {
-      authRequired: true
-    }
+    component: AdminScreen
   },
   {
     path: "/login",
