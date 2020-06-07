@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <a href="/" class="navigation">
+    <a href="" class="navigation" @click.prevent="goBack">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.34 15.13">
         <g id="Layer_2" data-name="Layer 2">
           <g id="Layer_1-2" data-name="Layer 1">
@@ -83,6 +83,9 @@ export default {
   methods: {
     restockMachine() {
       console.log("restock");
+    },
+    goBack() {
+      this.$router.push("/");
     }
   }
 };

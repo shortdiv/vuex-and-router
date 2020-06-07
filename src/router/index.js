@@ -12,12 +12,8 @@ const routes = [
     path: "/",
     name: "AdminScreen",
     component: AdminScreen,
-    beforeEnter: (to, from, next) => {
-      if (store.getters["isLoggedIn"]) {
-        next();
-      } else {
-        next("/login");
-      }
+    meta: {
+      authRequired: true
     }
   },
   {
@@ -28,13 +24,26 @@ const routes = [
   {
     path: "/inventory",
     name: InventoryScreen,
-    component: InventoryScreen
+    component: InventoryScreen,
+    meta: {
+      authRequired: true
+    }
   }
 ];
 
 const router = new Router({
   routes,
   mode: "history"
+});
+
+router.beforeEach((to, from, next) => {
+  const authRequired = to.matched.some(route => route.meta.authRequired);
+  if (!authRequired) return next();
+  if (store.getters["isLoggedIn"]) {
+    next();
+  } else {
+    next("/login");
+  }
 });
 
 export default router;
