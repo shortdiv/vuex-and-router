@@ -6,8 +6,8 @@
       <span>{{ machine.lastServiced }}</span>
     </div>
     <span class="machine-state">{{ machine.condition }}</span>
-    <button class="service-btn" :disabled="true" @click="serviceMachine">
-      Service
+    <button class="service-btn" @click="restockMachine">
+      Restock
     </button>
   </div>
 </template>
@@ -29,7 +29,10 @@ export default {
     }
   },
   methods: {
-    serviceMachine() {}
+    restockMachine() {
+      this.$store.dispatch("selectMachine", this.machine);
+      this.$router.push("/inventory");
+    }
   }
 };
 </script>
