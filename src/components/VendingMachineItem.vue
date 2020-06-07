@@ -3,10 +3,12 @@
     <div :class="['machine-condition--tab', machine.condition]"></div>
     <div class="machine-card--info">
       <p>{{ machine.name }}</p>
-      <span>{{ machine.lastServiced }}</span>
+      <span :style="{ fontStyle: 'italic' }"
+        >Last stocked: {{ machine.lastServiced }}</span
+      >
     </div>
     <span class="machine-state">{{ machine.condition }}</span>
-    <button class="service-btn" @click="restockMachine">
+    <button class="service-btn" disabled="true" @click="restockMachine">
       Restock
     </button>
   </div>
@@ -23,15 +25,9 @@ export default {
       machineId: null
     };
   },
-  computed: {
-    timesServiced() {
-      return this.$store.state[this.machineId].timesServiced;
-    }
-  },
   methods: {
     restockMachine() {
-      this.$store.dispatch("selectMachine", this.machine);
-      this.$router.push("/inventory");
+      console.log("restock");
     }
   }
 };
