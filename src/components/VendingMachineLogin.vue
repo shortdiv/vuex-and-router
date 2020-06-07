@@ -14,7 +14,11 @@
           Password
           <input type="password" />
         </label>
-        <button type="submit" class="submit-button" @click="handleLogin">
+        <button
+          type="submit"
+          class="submit-button"
+          @click.prevent="handleLogin"
+        >
           Login
         </button>
       </form>
