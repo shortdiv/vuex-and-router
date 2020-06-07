@@ -1,8 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import LoginScreen from "../components/VendingMachineLogin.vue";
-import AdminScreen from "../components/VendingMachineAdmin.vue";
-import InventoryScreen from "../components/InventoryView.vue";
 import store from "../store";
 
 Vue.use(Router);
@@ -11,7 +9,10 @@ const routes = [
   {
     path: "/",
     name: "AdminScreen",
-    component: AdminScreen,
+    component: () =>
+      import(
+        /* webpackChunkName: "admin" */ "../components/VendingMachineAdmin.vue"
+      ),
     meta: {
       authRequired: true
     }
@@ -23,8 +24,9 @@ const routes = [
   },
   {
     path: "/inventory",
-    name: InventoryScreen,
-    component: InventoryScreen,
+    name: "InventoryScreen",
+    component: () =>
+      import(/* webpackChunkName: "admin" */ "../components/InventoryView.vue"),
     meta: {
       authRequired: true
     }
